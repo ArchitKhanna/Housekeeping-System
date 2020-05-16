@@ -2,10 +2,14 @@
 {% block content %}
   <h1>Welcome to the Thomond Village Panel</h1>
   {% for apt in apartments %}
-    <h2>Unit: {{ apt.Name }}</h2>
-    <h4>Block: {{ apt.Block }}</h4>
-    <h4>Status: {{ apt.Status }}</h4>
-    <h4>Task: {{ apt.Task }}</h4>
-    <h4>Assigned To: {{ apt.Assigned }}</h4>
+    <article class="media content-section">
+      <div class="media-body">
+        <h2><a class="article-title" href="#">{{ apt.Name }}</a></h2>
+        <p class="article-content">Block: {{ apt.Block }}</p>
+        <p class="article-content">Status: {{ apt.Status }}</p>
+        <p class="article-content">Task: {{ apt.Task }}</p>
+        <p class="article-content">Assigned To: {{ apt.Assigned }}</p>
+      </div>
+    </article>
   {% endfor %}
 {% endblock content %}
