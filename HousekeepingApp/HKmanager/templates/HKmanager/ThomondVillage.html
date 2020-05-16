@@ -1,0 +1,11 @@
+{% extends "HKmanager/base.html" %}
+{% block content %}
+  <h1>Welcome to the Thomond Village Panel</h1>
+  {% for apt in apartments %}
+    <h2>Unit: {{ apt.Name }}</h2>
+    <h4>Block: {{ apt.Block }}</h4>
+    <h4>Status: {{ apt.Status }}</h4>
+    <h4>Task: {{ apt.Task }}</h4>
+    <h4>Assigned To: {{ apt.Assigned }}</h4>
+  {% endfor %}
+{% endblock content %}
