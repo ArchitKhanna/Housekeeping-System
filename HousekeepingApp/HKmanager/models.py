@@ -15,8 +15,17 @@ class apartment(models.Model):
 class block(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
 
+    def __str__(self):
+        return self.name
+
 class status(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
 
+    def __str__(self):
+        return self.name
+
 class task(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
+
+    def __str__(self):
+        return self.name
