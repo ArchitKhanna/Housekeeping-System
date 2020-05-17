@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import apartment, block, status, task
 
 #On adding a new view, ensure it is rendering the right html page and has the
 # right name along with variables data etc.
@@ -34,7 +35,7 @@ def tutorial(request):
 
 def thomondvillage(request):
     context = {
-        'apartments': apartments,
+        'apartments': apartment.objects.all(),
         'title': 'Thomond Village Panel'
     }
     return render(request, 'HKmanager/thomondvillage.html', context)
