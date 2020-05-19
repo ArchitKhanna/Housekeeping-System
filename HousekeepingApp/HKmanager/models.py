@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 
 class apartment(models.Model):
     number = models.IntegerField(unique=True, null=False, blank=False)
-    block = models.IntegerField(null=False, blank=False)
-    status = models.IntegerField(null=False, blank=False)
-    task = models.IntegerField(null=False, blank=False)
+    block = models.TextField(null=False, blank=False)
+    status = models.TextField(null=False, blank=False)
+    task = models.TextField(null=False, blank=False)
     assignee = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     #def __str__(self):
