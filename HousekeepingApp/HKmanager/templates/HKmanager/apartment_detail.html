@@ -1,0 +1,18 @@
+{% extends "HKmanager/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+      <h2 class="article-title">Apartment {{ object.number }}</h2>
+      <p class="article-content">Block: {{ object.block }}</p>
+      <p class="article-content">Status: {{ object.status }}</p>
+      <p class="article-content">Task: {{ object.task }}</p>
+      <p class="article-content">Assigned To: {{ object.assignee }}</p>
+      {% if object.assignee == user or user.is_superuser %}
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'hk-apt-update' object.id %}">Update Apartment</a>
+      {% endif %}
+      {% if user.is_superuser %}
+        <a class="btn btn-secondary btn-outline-danger btn-sm mt-1 mb-1" href="{% url 'hk-apt-delete' object.id %}">Delete Apartment</a>
+      {% endif %}
+    </div>
+  </article>
+{% endblock content %}

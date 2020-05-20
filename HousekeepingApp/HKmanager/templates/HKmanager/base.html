@@ -38,6 +38,7 @@
                 <a class="nav-item nav-link" href="{% url 'hk-user-logout' %}">Logout</a>
                 {% if user.is_superuser %}
                   <a class="nav-item nav-link" href="/admin/">Admin</a>
+                  <a class="nav-item nav-link" href="{% url 'hk-apt-create' %}">Add Apartment</a>
                 {% endif %}
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'hk-user-login' %}">Login</a>

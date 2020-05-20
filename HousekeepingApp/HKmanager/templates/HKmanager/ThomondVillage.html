@@ -4,7 +4,7 @@
   {% for apt in apartment %}
     <article class="media content-section">
       <div class="media-body">
-        <h2><a class="article-title" href="#">Apartment {{ apt.number }}</a></h2>
+        <h2><a class="article-title" href="{% url 'hk-Apartment' apt.id %}">Apartment {{ apt.number }}</a></h2>
         <p class="article-content">Block: {{ apt.block }}</p>
         <p class="article-content">Status: {{ apt.status }}</p>
         <p class="article-content">Task: {{ apt.task }}</p>

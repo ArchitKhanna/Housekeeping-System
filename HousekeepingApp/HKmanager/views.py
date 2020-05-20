@@ -1,6 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+    )
 from .models import apartment, block, status, task
 #On adding a new view, ensure it is rendering the right html page and has the
 # right name along with variables data etc.
@@ -31,9 +38,48 @@ def thomondvillage(request):
     }
     return render(request, 'HKmanager/thomondvillage.html', context)
 
-class ApartmentListView(ListView):
+class ApartmentListView(LoginRequiredMixin, ListView):
     model = apartment
     template_name = 'HKmanager/ThomondVillage.html'
+    context_object_name = 'apartment'
 
-class ApartmentDetailView(DetailView):
+class ApartmentDetailView(LoginRequiredMixin, DetailView):
     model = apartment
+
+class ApartmentCreateView(LoginRequiredMixin, CreateView):
+    model = apartment
+    fields = ['number', 'block', 'status', 'task', 'assignee']
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApartmentCreateView, self).get_context_data(*args, **kwargs)
+        legend = "Add New Apartment"
+        btn = "Add Apartment"
+        update = False
+        context["legend"] = legend
+        context["btn"] = btn
+        context["update"] = update
+        return context
+
+class ApartmentUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
+    model = apartment
+    fields = ['status', 'task', 'assignee']
+
+    def test_func(self):
+        apartment = self.get_object()
+        if self.request.user == apartment.assignee:
+            return True
+        return False
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApartmentUpdateView, self).get_context_data(*args, **kwargs)
+        legend = "Update Apartment"
+        btn = "Update"
+        update = True
+        context["legend"] = legend
+        context["btn"] = btn
+        context["update"] = update
+        return context
+
+class ApartmentDeleteView(LoginRequiredMixin, DeleteView):
+    model = apartment
+    success_url = '/thomondvillage/'
