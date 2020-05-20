@@ -5,11 +5,23 @@
   <div class="media">
     <!-- <img class="rounded-circle account-img" src="userimage.jpg"> -->
     <div class="media-body">
-      <h2 class="account-heading">{{ user.username }}</h2>
-      <p class="text-secondary">{{ user.email }}</p>
-      <p class="text-secondary">{{ user.profile.mobile }}</p>
+      <h2 class="account-heading">{{ user.first_name }} {{ user.last_name }}</h2>
+      <p class="text-secondary">Email: {{ user.email }}</p>
+      <p class="text-secondary">Mobile: {{ user.profile.mobile }}</p>
     </div>
   </div>
-  <!-- FORM HERE -->
+  <br>
+  <br>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Update Personal Information</legend>
+      {{ u_form|crispy }}
+      {{ p_form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-outline-info" type="submit" name="submit-button">Update</button>
+    </div>
+  </form>
 </div>
 {% endblock content %}
