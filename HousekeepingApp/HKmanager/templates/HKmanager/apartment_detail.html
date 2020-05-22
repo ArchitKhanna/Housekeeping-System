@@ -2,11 +2,23 @@
 {% block content %}
   <article class="media content-section">
     <div class="media-body">
-      <h2 class="article-title">Apartment {{ object.number }}</h2>
-      <p class="article-content">Block: {{ object.block }}</p>
+      <h2 class="article-title">Apartment {{ object.number }} - {{ object.block }}</h2>
+      <p class="article-content">Rooms: {{ object.rooms }}</p>
+      <br>
       <p class="article-content">Status: {{ object.status }}</p>
       <p class="article-content">Task: {{ object.task }}</p>
       <p class="article-content">Assigned To: {{ object.assignee }}</p>
+      <hr>
+      <h4 class="article-title ml-3">Living Room {{ object.livingroom.apartment }}</h4>
+      <hr>
+      <h4 class="article-title ml-3">Kitchen {{ object.kitchen.apartment }}</h4>
+      <hr>
+      <h4 class="article-title ml-3">Corridor {{ object.corridor.apartment }}</h4>
+      <hr>
+      <h4 class="article-title ml-3">Rooms {{ object.number }}</h4>
+      {% for bedroom in bedrooms %}
+        <h6 class="article-title ml-5">Room {{ bedroom.number }}</h6>
+      {% endfor %}
       {% if object.assignee == user or user.is_superuser %}
         <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'hk-apt-update' object.id %}">Update Apartment</a>
       {% endif %}

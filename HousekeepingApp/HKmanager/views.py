@@ -8,7 +8,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
     )
-from .models import apartment, block, status, task
+from .models import apartment, block, status, task, bedroom
 #On adding a new view, ensure it is rendering the right html page and has the
 # right name along with variables data etc.
 
@@ -46,9 +46,16 @@ class ApartmentListView(LoginRequiredMixin, ListView):
 class ApartmentDetailView(LoginRequiredMixin, DetailView):
     model = apartment
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ApartmentDetailView, self).get_context_data(*args, **kwargs)
+        i=1
+        context["bedrooms"] = bedroom.objects.filter(apartment=self.object.pk)
+        context["index"] = i
+        return context
+
 class ApartmentCreateView(LoginRequiredMixin, CreateView):
     model = apartment
-    fields = ['number', 'block', 'status', 'task', 'assignee']
+    fields = ['number', 'block', 'rooms', 'status', 'task', 'assignee']
 
     def get_context_data(self, *args, **kwargs):
         context = super(ApartmentCreateView, self).get_context_data(*args, **kwargs)
