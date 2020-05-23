@@ -48,9 +48,7 @@ class ApartmentDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ApartmentDetailView, self).get_context_data(*args, **kwargs)
-        i=1
         context["bedrooms"] = bedroom.objects.filter(apartment=self.object.pk)
-        context["index"] = i
         return context
 
 class ApartmentCreateView(LoginRequiredMixin, CreateView):

@@ -1,14 +1,48 @@
 {% extends "HKmanager/base.html" %}
 {% block content %}
   <h1>Welcome to the Thomond Village Panel</h1>
+  <article class="media content-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="apartment-header">APARTMENT</p>
+        </div>
+        <div class="col-sm-3" style="text-align: center;">
+          <p class="apartment-header">STATUS</p>
+        </div>
+        <div class="col-sm-3" style="text-align: center;">
+          <p class="apartment-header">TASK<p>
+        </div>
+        <div class="col-sm-3" style="text-align: center;">
+          <p class="apartment-header">ASSIGNED TO</p>
+        </div>
+      </div>
+    </div>
+  </article>
   {% for apt in apartment %}
     <article class="media content-section">
-      <div class="media-body">
-        <h2><a class="article-title" href="{% url 'hk-Apartment' apt.id %}">Apartment {{ apt.number }}</a></h2>
-        <p class="article-content">Block: {{ apt.block }}</p>
-        <p class="article-content">Status: {{ apt.status }}</p>
-        <p class="article-content">Task: {{ apt.task }}</p>
-        <p class="article-content">Assigned To: {{ apt.assignee }}</p>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <h4><a class="article-title" href="{% url 'hk-Apartment' apt.id %}">{{ apt.block }} - {{ apt.number }}</a></h4>
+          </div>
+          <div id="status {{apt.number}}" class="col-sm-3 text-white">
+            <p class="article-content aligner-center">{{ apt.status }}</p>
+          </div>
+          <div id="task {{apt.number}}" class="col-sm-3 text-white">
+            <p class="article-content aligner-center">{{ apt.task }}</p>
+          </div>
+          <script>
+            var num = "{{apt.number}}"
+            var status = "{{apt.status}}";
+            var task = "{{apt.task}}";
+            setStatusClass(status, num);
+            setTaskClass(task, num);
+          </script>
+          <div class="col-sm-3">
+            <p class="article-content aligner-center">{{ apt.assignee }}</p>
+          </div>
+        </div>
       </div>
     </article>
   {% endfor %}

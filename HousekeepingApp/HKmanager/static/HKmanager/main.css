@@ -12,6 +12,10 @@ ul {
   margin: 0;
 }
 
+div {
+  vertical-align: middle;
+}
+
 .bg-steel {
   background-color: #c40906;
 }
@@ -30,14 +34,17 @@ ul {
 
 .content-section {
   background: #ffffff;
-  padding: 10px 20px;
+  padding: 8px 20px;
+  vertical-align: middle;
+  line-height: inherit;
   border: 1px solid #dddddd;
   border-radius: 3px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .article-title {
   color: #444444;
+  font-weight: bold;
 }
 
 a.article-title:hover {
@@ -81,4 +88,38 @@ a.article-title:hover {
 
 .account-heading {
   font-size: 2.5rem;
+}
+
+.aligner-center {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.apartment-header {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.text-white {
+  color: white;
+}
+
+.colorsetter-darkgreen {
+  background: #26b00e;
+}
+
+.colorsetter-ashleygreen {
+  background: #7bff19;
+}
+
+.colorsetter-ashleyred {
+  background: #e80000;
+}
+
+.colorsetter-ashleyorange {
+  background: #ff9300;
+}
+
+.colorsetter-ashleyblue {
+  background: #0362fe;
 }
