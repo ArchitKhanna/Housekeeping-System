@@ -4,7 +4,7 @@
   <article class="media content-section">
     <div class="container">
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-3" style="text-align: center;">
           <p class="apartment-header">APARTMENT</p>
         </div>
         <div class="col-sm-3" style="text-align: center;">
@@ -24,7 +24,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-3">
-            <h4><a class="article-title" href="{% url 'hk-Apartment' apt.id %}">{{ apt.block }} - {{ apt.number }}</a></h4>
+            <h4><a class="article-title aligner-center" href="{% url 'hk-Apartment' apt.id %}">{{ apt.block }} - {{ apt.number }}</a></h4>
           </div>
           <div id="status {{apt.number}}" class="col-sm-3 text-white">
             <p class="article-content aligner-center">{{ apt.status }}</p>
