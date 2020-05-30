@@ -9,9 +9,20 @@ from .models import (
                     corridor,
                     bedroom,
                     ensuite,
-                    bathroom
+                    bathroom,
+                    taskslivingRoom,
+                    tasksKitchen,
+                    tasksCorridor,
+                    tasksBedroom,
+                    tasksEnsuite,
+                    livingRoomCheckList,
+                    kitchenCheckList,
+                    corridorCheckList,
+                    bedroomCheckList,
+                    ensuiteCheckList
                     )
 
+#CREATING VARIOUS SUB-OBJECTS FOR EACH APARTMENT
 #Create Living Room object for each Apartment
 @receiver(post_save, sender=apartment)
 def create_livingRoom(sender, instance, created, **kwargs):
@@ -51,6 +62,68 @@ def create_bedroom(sender, instance, created, **kwargs):
             bedroom.objects.create(apartment=instance, number=i+1)
             #bedroom.objects.save()
 
-#@receiver(post_save, sender=apartment)
-#def save_bedroom(sender, instance, **kwargs):
-#    instance.bedroom.save()
+#Create ensuite object for each bedroom
+@receiver(post_save, sender=bedroom)
+def create_ensuite(sender, instance, created, **kwargs):
+    if created:
+        ensuite.objects.create(apartment=instance.apartment, bedroom=instance)
+
+@receiver(post_save, sender=bedroom)
+def save_ensuite(sender, instance, **kwargs):
+    instance.ensuite.save()
+
+#CREATING CHECKLISTS FOR EACH APARTMENT AND SUB-OBJECTS
+#Creating Living Room Checklist
+@receiver(post_save, sender=livingRoom)
+def create_livingRoomCheckList(sender, instance, created, **kwargs):
+    if created:
+        tasks = taskslivingRoom.objects.all()
+        for task in tasks:
+            livingRoomCheckList.objects.create(
+                                               livingroom=instance,
+                                               task=task
+                                              )
+
+#Creating Kitchen Checklist
+@receiver(post_save, sender=kitchen)
+def create_KitchenCheckList(sender, instance, created, **kwargs):
+    if created:
+        tasks = tasksKitchen.objects.all()
+        for task in tasks:
+            kitchenCheckList.objects.create(
+                                            kitchen=instance,
+                                            task=task
+                                           )
+
+#Creating Corridor Checklist
+@receiver(post_save, sender=corridor)
+def create_CorridorCheckList(sender, instance, created, **kwargs):
+    if created:
+        tasks = tasksCorridor.objects.all()
+        for task in tasks:
+            corridorCheckList.objects.create(
+                                             corridor=instance,
+                                             task=task
+                                            )
+
+#Creating Room Checklist (for each room)
+@receiver(post_save, sender=bedroom)
+def create_RoomCheckList(sender, instance, created, **kwargs):
+    if created:
+        tasks = tasksBedroom.objects.all()
+        for task in tasks:
+            bedroomCheckList.objects.create(
+                                            bedroom=instance,
+                                            task=task
+                                           )
+
+#Creating Ensuite Checklist (for each ensuite)
+@receiver(post_save, sender=ensuite)
+def create_EnsiteCheckList(sender, instance, created, **kwargs):
+    if created:
+        tasks = tasksEnsuite.objects.all()
+        for task in tasks:
+            ensuiteCheckList.objects.create(
+                                            ensuite=instance,
+                                            task=task
+                                           )

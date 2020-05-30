@@ -14,7 +14,17 @@ from .models import (
                     corridor,
                     bedroom,
                     ensuite,
-                    bathroom
+                    bathroom,
+                    taskslivingRoom,
+                    tasksKitchen,
+                    tasksCorridor,
+                    tasksBedroom,
+                    tasksEnsuite,
+                    livingRoomCheckList,
+                    kitchenCheckList,
+                    corridorCheckList,
+                    bedroomCheckList,
+                    ensuiteCheckList
                     )
 
 admin.site.register(villages)
@@ -29,3 +39,13 @@ admin.site.register(corridor)
 admin.site.register(bedroom)
 admin.site.register(ensuite)
 admin.site.register(bathroom)
+admin.site.register(taskslivingRoom)
+admin.site.register(tasksKitchen)
+admin.site.register(tasksCorridor)
+admin.site.register(tasksBedroom)
+admin.site.register(tasksEnsuite)
+admin.site.register(livingRoomCheckList)
+admin.site.register(kitchenCheckList)
+admin.site.register(corridorCheckList)
+admin.site.register(bedroomCheckList)
+admin.site.register(ensuiteCheckList)

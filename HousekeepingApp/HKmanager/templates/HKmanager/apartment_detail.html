@@ -8,8 +8,31 @@
       <p class="article-content">Status: {{ object.status }}</p>
       <p class="article-content">Task: {{ object.task }}</p>
       <p class="article-content">Assigned To: {{ object.assignee }}</p>
+      {% if object.assignee == user or user.is_superuser %}
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'hk-apt-update' object.id %}">Update Apartment</a>
+      {% endif %}
+      {% if user.is_superuser %}
+        <a class="btn btn-secondary btn-outline-danger btn-sm mt-1 mb-1" href="{% url 'hk-apt-delete' object.id %}">Delete Apartment</a>
+      {% endif %}
       <hr>
       <h4 class="article-title ml-3">Living Room {{ object.livingroom.apartment }}</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <p><b>Task List</b></p>
+            <ol>
+              {% for task in livingRoomCheckList %}
+                <li>{{ task.livingroom }}</li>
+                <li>{{ task.task }}</li>
+                <li>{{ task.checked }}</li>
+              {% endfor %}
+            </ol>
+          </div>
+          <div class="col-sm-6">
+            <p><b>Call Backs</b></p>
+          </div>
+        </div>
+      </div>
       <hr>
       <h4 class="article-title ml-3">Kitchen {{ object.kitchen.apartment }}</h4>
       <hr>
@@ -17,14 +40,9 @@
       <hr>
       <h4 class="article-title ml-3">Rooms {{ object.number }}</h4>
       {% for bedroom in bedrooms %}
-        <h6 class="article-title ml-5">Room {{ bedroom.number }}</h6>
+        <h5 class="article-title ml-4">Room {{ bedroom.number }}</h5>
+        <h6 class="article-title ml-5">Ensuite {{ bedroom.ensuite.bedroom.number }} </h6>
       {% endfor %}
-      {% if object.assignee == user or user.is_superuser %}
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'hk-apt-update' object.id %}">Update Apartment</a>
-      {% endif %}
-      {% if user.is_superuser %}
-        <a class="btn btn-secondary btn-outline-danger btn-sm mt-1 mb-1" href="{% url 'hk-apt-delete' object.id %}">Delete Apartment</a>
-      {% endif %}
     </div>
   </article>
 {% endblock content %}

@@ -8,7 +8,26 @@ from django.views.generic import (
     UpdateView,
     DeleteView
     )
-from .models import apartment, block, status, task, bedroom
+from .models import (
+                    apartment,
+                    numberOfRooms,
+                    livingRoom,
+                    kitchen,
+                    corridor,
+                    bedroom,
+                    ensuite,
+                    bathroom,
+                    taskslivingRoom,
+                    tasksKitchen,
+                    tasksCorridor,
+                    tasksBedroom,
+                    tasksEnsuite,
+                    livingRoomCheckList,
+                    kitchenCheckList,
+                    corridorCheckList,
+                    bedroomCheckList,
+                    ensuiteCheckList
+                    )
 #On adding a new view, ensure it is rendering the right html page and has the
 # right name along with variables data etc.
 
@@ -49,6 +68,8 @@ class ApartmentDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(ApartmentDetailView, self).get_context_data(*args, **kwargs)
         context["bedrooms"] = bedroom.objects.filter(apartment=self.object.pk)
+        #lRoom = livingRoom.objects.filter(apartment=self.object.pk)
+        context["livingRoomCheckList"] = livingRoomCheckList.objects.all()
         return context
 
 class ApartmentCreateView(LoginRequiredMixin, CreateView):
@@ -71,7 +92,7 @@ class ApartmentUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
 
     def test_func(self):
         apartment = self.get_object()
-        if self.request.user == apartment.assignee:
+        if self.request.user == apartment.assignee or self.request.user.is_superuser:
             return True
         return False
 
