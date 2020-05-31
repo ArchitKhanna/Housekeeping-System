@@ -67,9 +67,16 @@ class ApartmentDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ApartmentDetailView, self).get_context_data(*args, **kwargs)
-        context["bedrooms"] = bedroom.objects.filter(apartment=self.object.pk)
-        #lRoom = livingRoom.objects.filter(apartment=self.object.pk)
-        context["livingRoomCheckList"] = livingRoomCheckList.objects.all()
+        bedrooms = bedroom.objects.filter(apartment=self.object.pk)
+        context["bedrooms"] = bedrooms
+        context["livingRoomCheckList"] = livingRoomCheckList.objects.all().filter(livingroom=self.object.livingroom)
+        context["kitchenCheckList"] = kitchenCheckList.objects.all().filter(kitchen=self.object.kitchen)
+        context["corridorCheckList"] = corridorCheckList.objects.all().filter(corridor=self.object.corridor)
+        allRoomsCheckList = []
+        for room in bedrooms:
+            allRoomsCheckList+= bedroomCheckList.objects.all().filter(bedroom=room)
+
+        context["bedroomCheckList"] = allRoomsCheckList
         return context
 
 class ApartmentCreateView(LoginRequiredMixin, CreateView):

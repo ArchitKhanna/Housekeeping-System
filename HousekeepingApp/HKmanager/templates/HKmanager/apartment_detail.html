@@ -19,14 +19,22 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <p><b>Task List</b></p>
-            <ol>
+            <table>
+              <tr>
+                <th>Task</th>
+                <th>Status</th>
+              </tr>
               {% for task in livingRoomCheckList %}
-                <li>{{ task.livingroom }}</li>
-                <li>{{ task.task }}</li>
-                <li>{{ task.checked }}</li>
+                <tr>
+                  <td>{{ task.task }}</td>
+                  {% if task.checked %}
+                  <td>Completed</td>
+                  {% else %}
+                  <td>Pending</td>
+                  {% endif %}
+                </tr>
               {% endfor %}
-            </ol>
+            </table>
           </div>
           <div class="col-sm-6">
             <p><b>Call Backs</b></p>
@@ -35,13 +43,92 @@
       </div>
       <hr>
       <h4 class="article-title ml-3">Kitchen {{ object.kitchen.apartment }}</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <table>
+              <tr>
+                <th>Task</th>
+                <th>Status</th>
+              </tr>
+              {% for task in kitchenCheckList %}
+                <tr>
+                  <td>{{ task.task }}</td>
+                  {% if task.checked %}
+                  <td>Completed</td>
+                  {% else %}
+                  <td>Pending</td>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+          <div class="col-sm-6">
+            <p><b>Call Backs</b></p>
+          </div>
+        </div>
+      </div>
       <hr>
       <h4 class="article-title ml-3">Corridor {{ object.corridor.apartment }}</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <table>
+              <tr>
+                <th>Task</th>
+                <th>Status</th>
+              </tr>
+              {% for task in corridorCheckList %}
+                <tr>
+                  <td>{{ task.task }}</td>
+                  {% if task.checked %}
+                  <td>Completed</td>
+                  {% else %}
+                  <td>Pending</td>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+          <div class="col-sm-6">
+            <p><b>Call Backs</b></p>
+          </div>
+        </div>
+      </div>
       <hr>
       <h4 class="article-title ml-3">Rooms {{ object.number }}</h4>
       {% for bedroom in bedrooms %}
         <h5 class="article-title ml-4">Room {{ bedroom.number }}</h5>
+        <div class="container ml-2">
+          <div class="row">
+            <div class="col-sm-6">
+              <table>
+                <tr>
+                  <th>Task</th>
+                  <th>Status</th>
+                </tr>
+                {% for task in bedroomCheckList %}
+                  {% if task.bedroom == bedroom %}
+                    <tr>
+                      <td>{{ task.task }}</td>
+                      {% if task.checked %}
+                      <td>Completed</td>
+                      {% else %}
+                      <td>Pending</td>
+                      {% endif %}
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+              </table>
+            </div>
+            <div class="col-sm-6">
+              <p><b>Call Backs</b></p>
+            </div>
+          </div>
+        </div>
+        <br>
         <h6 class="article-title ml-5">Ensuite {{ bedroom.ensuite.bedroom.number }} </h6>
+        <br>
       {% endfor %}
     </div>
   </article>
