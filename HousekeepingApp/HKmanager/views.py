@@ -34,6 +34,8 @@ from .models import (
 #On adding a new view, ensure it is rendering the right html page and has the
 # right name along with variables data etc.
 
+#METHOD BASED VIEWS
+
 @login_required
 def home(request):
     context = {
@@ -57,6 +59,7 @@ def thomondvillage(request):
     }
     return render(request, 'HKmanager/thomondvillage.html', context)
 
+@login_required
 def complete(request, pk, list_id, key):
 
     def listAssigner(i):
@@ -78,6 +81,7 @@ def complete(request, pk, list_id, key):
     task.save()
     return redirect('/apartment/'+str(pk)+'/')
 
+@login_required
 def undocomplete(request, pk, list_id, key):
 
     def listAssigner(i):
@@ -99,10 +103,56 @@ def undocomplete(request, pk, list_id, key):
     task.save()
     return redirect('/apartment/'+str(pk)+'/')
 
+#CLAS BASED VIEWS
+
+class AnnouncementListView(LoginRequiredMixin, ListView):
+    model = Announcement
+    template_name = 'HKmanager/home.html'
+    context_object_name = 'posts'
+    ordering = ['-date_posted']
+    paginate_by = 5
+
+class AnnouncementDetailView(LoginRequiredMixin, DetailView):
+    model = Announcement
+
+class AnnouncementCreateView(LoginRequiredMixin, CreateView):
+    model = Announcement
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class AnnouncementUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
+    model = Announcement
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        announcement = self.get_object()
+        if self.request.user == announcement.author or self.request.user.is_superuser:
+            return True
+        return False
+
+class AnnouncementDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
+    model = Announcement
+    success_url = '/home/'
+
+    def test_func(self):
+        announcement = self.get_object()
+        if self.request.user == announcement.author or self.request.user.is_superuser:
+            return True
+        return False
+
+
 class ApartmentListView(LoginRequiredMixin, ListView):
     model = apartment
     template_name = 'HKmanager/ThomondVillage.html'
     context_object_name = 'apartment'
+    paginate_by = 10
 
 class ApartmentDetailView(LoginRequiredMixin, DetailView):
     model = apartment

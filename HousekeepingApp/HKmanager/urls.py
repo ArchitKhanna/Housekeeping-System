@@ -1,5 +1,10 @@
 from django.urls import path
 from .views import (
+    AnnouncementListView,
+    AnnouncementDetailView,
+    AnnouncementCreateView,
+    AnnouncementUpdateView,
+    AnnouncementDeleteView,
     ApartmentListView,
     ApartmentDetailView,
     ApartmentCreateView,
@@ -12,7 +17,11 @@ from . import views
 #On adding a new url, ensure views.name is correct, url is correct and name is changed.
 
 urlpatterns = [
-    path('home/', views.home, name='hk-Home'),
+    path('home/', AnnouncementListView.as_view(), name='hk-Home'),
+    path('announcement/<int:pk>/', AnnouncementDetailView.as_view(), name='hk-announcement'),
+    path('announcement/new/', AnnouncementCreateView.as_view(), name='hk-announcement-create'),
+    path('announcement/<int:pk>/update/', AnnouncementUpdateView.as_view(), name='hk-announcement-update'),
+    path('announcement/<int:pk>/delete/', AnnouncementDeleteView.as_view(), name='hk-announcement-delete'),
     path('tutorial/', views.tutorial, name='hk-Tutorial'),
     path('thomondvillage/', ApartmentListView.as_view(), name='hk-ThomondVillage'),
     path('apartment/new/', ApartmentCreateView.as_view(), name='hk-apt-create'),

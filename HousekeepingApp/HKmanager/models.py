@@ -13,6 +13,9 @@ class Announcement(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('hk-Home')
+
 class villages(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
 
