@@ -19,4 +19,6 @@ urlpatterns = [
     path('apartment/<int:pk>/', ApartmentDetailView.as_view(), name='hk-Apartment'),
     path('apartment/<int:pk>/update/', ApartmentUpdateView.as_view(), name='hk-apt-update'),
     path('apartment/<int:pk>/delete/', ApartmentDeleteView.as_view(), name='hk-apt-delete'),
+    path('completed/<int:pk>/<int:list_id>/<int:key>/', views.complete, name="task-complete"),
+    path('undocomplete/<int:pk>/<int:list_id>/<int:key>', views.undocomplete, name="task-undo"),
 ]

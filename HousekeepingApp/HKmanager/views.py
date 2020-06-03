@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .forms import CorridorUpdateForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -9,6 +11,7 @@ from django.views.generic import (
     DeleteView
     )
 from .models import (
+                    Announcement,
                     apartment,
                     numberOfRooms,
                     livingRoom,
@@ -34,13 +37,10 @@ from .models import (
 @login_required
 def home(request):
     context = {
-        'title': 'Housekeeper'
+        'title': 'Housekeeper - Home',
+        'posts': Announcement.objects.all()
     }
     return render(request, 'HKmanager/home.html', context)
-
-#class MyApartmentListView(ListView):
-#    model = apartment
-#    template_name = 'HKmanager/home.html'
 
 @login_required
 def tutorial(request):
@@ -57,6 +57,48 @@ def thomondvillage(request):
     }
     return render(request, 'HKmanager/thomondvillage.html', context)
 
+def complete(request, pk, list_id, key):
+
+    def listAssigner(i):
+
+        switcher = {
+            1:livingRoomCheckList,
+            2:kitchenCheckList,
+            3:corridorCheckList,
+            4:bedroomCheckList,
+            5:ensuiteCheckList,
+        }
+
+        return switcher.get(i, "nothing")
+
+    checkList = listAssigner(key)
+
+    task = checkList.objects.get(pk=list_id)
+    task.checked = True
+    task.save()
+    return redirect('/apartment/'+str(pk)+'/')
+
+def undocomplete(request, pk, list_id, key):
+
+    def listAssigner(i):
+
+        switcher = {
+            1:livingRoomCheckList,
+            2:kitchenCheckList,
+            3:corridorCheckList,
+            4:bedroomCheckList,
+            5:ensuiteCheckList,
+        }
+
+        return switcher.get(i, "nothing")
+
+    checkList = listAssigner(key)
+
+    task = checkList.objects.get(pk=list_id)
+    task.checked = False
+    task.save()
+    return redirect('/apartment/'+str(pk)+'/')
+
 class ApartmentListView(LoginRequiredMixin, ListView):
     model = apartment
     template_name = 'HKmanager/ThomondVillage.html'
@@ -68,15 +110,23 @@ class ApartmentDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(ApartmentDetailView, self).get_context_data(*args, **kwargs)
         bedrooms = bedroom.objects.filter(apartment=self.object.pk)
+        ensuites = ensuite.objects.filter(apartment=self.object.pk)
         context["bedrooms"] = bedrooms
         context["livingRoomCheckList"] = livingRoomCheckList.objects.all().filter(livingroom=self.object.livingroom)
         context["kitchenCheckList"] = kitchenCheckList.objects.all().filter(kitchen=self.object.kitchen)
         context["corridorCheckList"] = corridorCheckList.objects.all().filter(corridor=self.object.corridor)
+
         allRoomsCheckList = []
+        allEnsuitesCheckList = []
+
         for room in bedrooms:
             allRoomsCheckList+= bedroomCheckList.objects.all().filter(bedroom=room)
 
+        for ens in ensuites:
+            allEnsuitesCheckList+= ensuiteCheckList.objects.all().filter(ensuite=ens)
+
         context["bedroomCheckList"] = allRoomsCheckList
+        context["ensuiteCheckList"] = allEnsuitesCheckList
         return context
 
 class ApartmentCreateView(LoginRequiredMixin, CreateView):

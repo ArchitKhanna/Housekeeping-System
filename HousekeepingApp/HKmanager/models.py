@@ -1,10 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils import timezone
 # Create your models here.
+
+class Announcement(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    date_posted = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.title
 
 class villages(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
+
+    def __str__(self):
+        return self.name
 
 class block(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)

@@ -28,9 +28,21 @@
                 <tr>
                   <td>{{ task.task }}</td>
                   {% if task.checked %}
-                  <td>Completed</td>
+                    <td>
+                      <center>
+                        <a href="{% url 'task-undo' object.id task.id 1 %}">
+                          Completed
+                        </a>
+                      </center>
+                    </td>
                   {% else %}
-                  <td>Pending</td>
+                    <td>
+                      <center>
+                        <a href="{% url 'task-complete' object.id task.id 1 %}">
+                          Pending
+                        </a>
+                      </center>
+                    </td>
                   {% endif %}
                 </tr>
               {% endfor %}
@@ -55,9 +67,21 @@
                 <tr>
                   <td>{{ task.task }}</td>
                   {% if task.checked %}
-                  <td>Completed</td>
+                    <td>
+                      <center>
+                        <a href="{% url 'task-undo' object.id task.id 2 %}">
+                          Completed
+                        </a>
+                      </center>
+                    </td>
                   {% else %}
-                  <td>Pending</td>
+                    <td>
+                      <center>
+                        <a href="{% url 'task-complete' object.id task.id 2 %}">
+                          Pending
+                        </a>
+                      </center>
+                    </td>
                   {% endif %}
                 </tr>
               {% endfor %}
@@ -82,9 +106,21 @@
                 <tr>
                   <td>{{ task.task }}</td>
                   {% if task.checked %}
-                  <td>Completed</td>
+                    <td>
+                      <center>
+                        <a href="{% url 'task-undo' object.id task.id 3 %}">
+                          Completed
+                        </a>
+                      </center>
+                    </td>
                   {% else %}
-                  <td>Pending</td>
+                    <td>
+                      <center>
+                        <a href="{% url 'task-complete' object.id task.id 3 %}">
+                          Pending
+                        </a>
+                      </center>
+                    </td>
                   {% endif %}
                 </tr>
               {% endfor %}
@@ -112,9 +148,21 @@
                     <tr>
                       <td>{{ task.task }}</td>
                       {% if task.checked %}
-                      <td>Completed</td>
+                        <td>
+                          <center>
+                            <a href="{% url 'task-undo' object.id task.id 4 %}">
+                              Completed
+                            </a>
+                          </center>
+                        </td>
                       {% else %}
-                      <td>Pending</td>
+                        <td>
+                          <center>
+                            <a href="{% url 'task-complete' object.id task.id 4 %}">
+                              Pending
+                            </a>
+                          </center>
+                        </td>
                       {% endif %}
                     </tr>
                   {% endif %}
@@ -127,7 +175,48 @@
           </div>
         </div>
         <br>
-        <h6 class="article-title ml-5">Ensuite {{ bedroom.ensuite.bedroom.number }} </h6>
+        <h6 class="article-title ml-5">
+          Ensuite {{ bedroom.ensuite.bedroom.number }}
+        </h6>
+        <div class="container ml-4">
+          <div class="row">
+            <div class="col-sm-6">
+              <table>
+                <tr>
+                  <th>Task</th>
+                  <th>Status</th>
+                </tr>
+                {% for task in ensuiteCheckList %}
+                  {% if task.ensuite == bedroom.ensuite %}
+                    <tr>
+                      <td>{{ task.task }}</td>
+                      {% if task.checked %}
+                        <td>
+                          <center>
+                            <a href="{% url 'task-undo' object.id task.id 5 %}">
+                              Completed
+                            </a>
+                          </center>
+                        </td>
+                      {% else %}
+                        <td>
+                          <center>
+                            <a href="{% url 'task-complete' object.id task.id 5 %}">
+                              Pending
+                            </a>
+                          </center>
+                        </td>
+                      {% endif %}
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+              </table>
+            </div>
+            <div class="col-sm-6">
+              <p><b>Call Backs</b></p>
+            </div>
+          </div>
+        </div>
         <br>
       {% endfor %}
     </div>

@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 from .models import (
+                    Announcement,
                     apartment,
                     block,
                     status,
@@ -27,6 +28,7 @@ from .models import (
                     ensuiteCheckList
                     )
 
+admin.site.register(Announcement)
 admin.site.register(villages)
 admin.site.register(apartment)
 admin.site.register(block)

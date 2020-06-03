@@ -95,6 +95,10 @@ a.article-title:hover {
   text-align: center;
 }
 
+.aligner-right {
+  text-align: right;
+}
+
 .apartment-header {
   font-weight: bold;
   font-size: 20px;
