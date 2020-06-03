@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+#password - gxqvctdwjtuujnsr
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -26,7 +26,6 @@ SECRET_KEY = '!t9mck795he&2_v89yv=wi$215c_0qaxv)_cz3w6xtg=-7z8tl'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -130,3 +129,13 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'hk-Home'
 LOGIN_URL = 'hk-user-login'
+
+DEFAULT_FROM_EMAIL = os.environ.get('HK_EMAIL_USER')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get('HK_EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('HK_EMAIL_PASS')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = os.environ.get('HK_EMAIL_USER')
+SERVER_EMAIL = os.environ.get('HK_EMAIL_USER')

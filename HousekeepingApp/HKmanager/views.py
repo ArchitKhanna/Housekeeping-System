@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import CorridorUpdateForm
+import os
 from django.views.generic import (
     ListView,
     DetailView,
@@ -42,6 +43,7 @@ def home(request):
         'title': 'Housekeeper - Home',
         'posts': Announcement.objects.all()
     }
+
     return render(request, 'HKmanager/home.html', context)
 
 @login_required

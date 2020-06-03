@@ -16,6 +16,22 @@ div {
   vertical-align: middle;
 }
 
+.light-grey {
+  background-color: #e0e0e0;
+}
+
+.dark-grey {
+  background-color: #ababab;
+}
+
+.white-text {
+  color: #fff;
+}
+
+.black-text {
+  color: #000;
+}
+
 .bg-steel {
   background-color: #c40906;
 }
