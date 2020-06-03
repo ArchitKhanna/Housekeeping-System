@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.template import Context
+from django.template.loader import get_template
 # Create your models here.
 
 class Announcement(models.Model):
@@ -59,6 +62,32 @@ class apartment(models.Model):
 
     def __str__(self):
         return str(self.number)
+
+    def save(self, *args, **kwargs):
+            apt = apartment.objects.get(pk=self.pk)
+            sender = apt.assignee
+            if apartment.objects.filter(pk=self.pk).exists():
+
+                temp = get_template('email.html')
+
+                details = {
+                            'sender': sender,
+                            'to': self.assignee.first_name,
+                            'apartment': self,
+                          }
+
+                html_content = temp.render(details)
+
+                send_mail(
+                            'Apartment Assignment Notification',
+                            html_content,
+                            'housekeeper.cls@gmail.com',
+                            [self.assignee.email],
+                            fail_silently=False,
+                            html_message=html_content,
+                         )
+            super(apartment, self).save(*args, **kwargs)
+
 
 class livingRoom(models.Model):
     apartment = models.OneToOneField(apartment, on_delete=models.CASCADE)
