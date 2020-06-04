@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from HKmanager.models import apartment
 #Types of messages:
     #messages.debug/.info/.success/.warning/.error
 
@@ -44,6 +45,7 @@ def profile(request):
 
     context = {
         'title': 'Housekeeper - Profile',
+        'apartments': apartment.objects.filter(assignee=request.user),
         'u_form': user_form,
         'p_form': profile_form,
     }
