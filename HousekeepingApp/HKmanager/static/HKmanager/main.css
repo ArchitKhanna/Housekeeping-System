@@ -26,6 +26,10 @@ div {
   vertical-align: middle;
 }
 
+td {
+  width: 400px;
+}
+
 .task-column-width {
   width:
 }
@@ -40,6 +44,10 @@ div {
 
 .red-text {
   color: #e80000;
+}
+
+.orange-text {
+  color: #d15200;
 }
 
 .dark-green {

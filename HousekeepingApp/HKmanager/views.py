@@ -78,6 +78,50 @@ def thomondvillage(request):
     return render(request, 'HKmanager/thomondvillage.html', context)
 
 @login_required
+def setcallback(request, pk, list_id, key):
+
+    def listAssigner(i):
+
+        switcher = {
+            1:livingRoomCheckList,
+            2:kitchenCheckList,
+            3:corridorCheckList,
+            4:bedroomCheckList,
+            5:ensuiteCheckList,
+        }
+
+        return switcher.get(i, "nothing")
+
+    checkList = listAssigner(key)
+
+    task = checkList.objects.get(pk=list_id)
+    task.callback = True
+    task.save()
+    return redirect('/apartment/'+str(pk)+'/')
+
+@login_required
+def undocallback(request, pk, list_id, key):
+
+    def listAssigner(i):
+
+        switcher = {
+            1:livingRoomCheckList,
+            2:kitchenCheckList,
+            3:corridorCheckList,
+            4:bedroomCheckList,
+            5:ensuiteCheckList,
+        }
+
+        return switcher.get(i, "nothing")
+
+    checkList = listAssigner(key)
+
+    task = checkList.objects.get(pk=list_id)
+    task.callback = False
+    task.save()
+    return redirect('/apartment/'+str(pk)+'/')
+
+@login_required
 def complete(request, pk, list_id, key):
 
     def listAssigner(i):

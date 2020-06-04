@@ -29,17 +29,18 @@
       <h4 class="article-title ml-3">Living Room {{ object.livingroom.apartment }}</h4>
       <div class="container">
         <div class="row">
-          <div class="col-sm-6">
-            <table>
+          <div class="col-sm-8">
+            <table class="table table-bordered table-sm">
               <tr>
                 <th>Task</th>
                 <th>Status</th>
+                <th>Callbacks</th>
               </tr>
               {% for task in livingRoomCheckList %}
                 <tr>
-                  <td>{{ task.task }}</td>
+                  <td class="twidth-lg">{{ task.task }}</td>
                   {% if task.checked %}
-                    <td>
+                    <td class="twidth-md">
                       <center>
                         <a class="green-text" href="{% url 'task-undo' object.id task.id 1 %}">
                           Completed
@@ -47,7 +48,7 @@
                       </center>
                     </td>
                   {% else %}
-                    <td>
+                    <td class="twidth-md">
                       <center>
                         <a class="red-text" href="{% url 'task-complete' object.id task.id 1 %}">
                           Pending
@@ -55,12 +56,34 @@
                       </center>
                     </td>
                   {% endif %}
+                  {% if task.callback %}
+                    <td>
+                      <center>
+                        {% if user.is_superuser %}
+                          <a class="orange-text" href="{% url 'callback-undo' object.id task.id 1 %}">
+                            Call Back!
+                          </a>
+                        {% else %}
+                          <p class="orange-text">
+                            Call Back!
+                          </p>
+                        {% endif %}
+                      </center>
+                    </td>
+                  {% else %}
+                    <td>
+                      <center>
+                        {% if user.is_superuser %}
+                          <a class="green-text" href="{% url 'callback-undo' object.id task.id 1 %}">
+                            Set Callback
+                          </a>
+                        {% endif %}
+                      </center>
+                    </td>
+                  {% endif %}
                 </tr>
               {% endfor %}
             </table>
-          </div>
-          <div class="col-sm-6">
-            <p><b>Call Backs</b></p>
           </div>
         </div>
       </div>
@@ -68,17 +91,18 @@
       <h4 class="article-title ml-3">Kitchen {{ object.kitchen.apartment }}</h4>
       <div class="container">
         <div class="row">
-          <div class="col-sm-6">
-            <table>
+          <div class="col-sm-8">
+            <table class="table table-bordered table-sm">
               <tr>
                 <th>Task</th>
                 <th>Status</th>
+                <th>Callbacks</th>
               </tr>
               {% for task in kitchenCheckList %}
                 <tr>
-                  <td>{{ task.task }}</td>
+                  <td class="twidth-lg">{{ task.task }}</td>
                   {% if task.checked %}
-                    <td>
+                    <td class="twidth-md">
                       <center>
                         <a class="green-text" href="{% url 'task-undo' object.id task.id 2 %}">
                           Completed
@@ -86,7 +110,7 @@
                       </center>
                     </td>
                   {% else %}
-                    <td>
+                    <td class="twidth-md">
                       <center>
                         <a class="red-text" href="{% url 'task-complete' object.id task.id 2 %}">
                           Pending
@@ -94,42 +118,28 @@
                       </center>
                     </td>
                   {% endif %}
-                </tr>
-              {% endfor %}
-            </table>
-          </div>
-          <div class="col-sm-6">
-            <p><b>Call Backs</b></p>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <h4 class="article-title ml-3">Corridor {{ object.corridor.apartment }}</h4>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <table>
-              <tr>
-                <th>Task</th>
-                <th>Status</th>
-              </tr>
-              {% for task in corridorCheckList %}
-                <tr>
-                  <td>{{ task.task }}</td>
-                  {% if task.checked %}
+                  {% if task.callback %}
                     <td>
                       <center>
-                        <a class="green-text" href="{% url 'task-undo' object.id task.id 3 %}">
-                          Completed
-                        </a>
+                        {% if user.is_superuser %}
+                          <a class="orange-text" href="{% url 'callback-undo' object.id task.id 2 %}">
+                            Call Back!
+                          </a>
+                        {% else %}
+                          <p class="orange-text">
+                            Call Back!
+                          </p>
+                        {% endif %}
                       </center>
                     </td>
                   {% else %}
                     <td>
                       <center>
-                        <a class="red-text" href="{% url 'task-complete' object.id task.id 3 %}">
-                          Pending
-                        </a>
+                        {% if user.is_superuser %}
+                          <a class="green-text" href="{% url 'callback-undo' object.id task.id 2 %}">
+                            Set Callback
+                          </a>
+                        {% endif %}
                       </center>
                     </td>
                   {% endif %}
@@ -137,8 +147,67 @@
               {% endfor %}
             </table>
           </div>
-          <div class="col-sm-6">
-            <p><b>Call Backs</b></p>
+        </div>
+      </div>
+      <hr>
+      <h4 class="article-title ml-3">Corridor {{ object.corridor.apartment }}</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8">
+            <table class="table table-bordered table-sm">
+              <tr>
+                <th>Task</th>
+                <th>Status</th>
+                <th>Callbacks</th>
+              </tr>
+              {% for task in corridorCheckList %}
+                <tr>
+                  <td class="twidth-lg">{{ task.task }}</td>
+                  {% if task.checked %}
+                    <td class="twidth-md">
+                      <center>
+                        <a class="green-text" href="{% url 'task-undo' object.id task.id 3 %}">
+                          Completed
+                        </a>
+                      </center>
+                    </td>
+                  {% else %}
+                    <td class="twidth-md">
+                      <center>
+                        <a class="red-text" href="{% url 'task-complete' object.id task.id 3 %}">
+                          Pending
+                        </a>
+                      </center>
+                    </td>
+                  {% endif %}
+                  {% if task.callback %}
+                    <td>
+                      <center>
+                        {% if user.is_superuser %}
+                          <a class="orange-text" href="{% url 'callback-undo' object.id task.id 3 %}">
+                            Call Back!
+                          </a>
+                        {% else %}
+                          <p class="orange-text">
+                            Call Back!
+                          </p>
+                        {% endif %}
+                      </center>
+                    </td>
+                  {% else %}
+                    <td>
+                      <center>
+                        {% if user.is_superuser %}
+                          <a class="green-text" href="{% url 'callback-undo' object.id task.id 3 %}">
+                            Set Callback
+                          </a>
+                        {% endif %}
+                      </center>
+                    </td>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+            </table>
           </div>
         </div>
       </div>
@@ -148,18 +217,19 @@
         <h5 class="article-title ml-4">Room {{ bedroom.number }}</h5>
         <div class="container ml-2">
           <div class="row">
-            <div class="col-sm-6">
-              <table>
+            <div class="col-sm-8">
+              <table class="table table-bordered table-sm">
                 <tr>
                   <th>Task</th>
                   <th>Status</th>
+                  <th>Callbacks</th>
                 </tr>
                 {% for task in bedroomCheckList %}
                   {% if task.bedroom == bedroom %}
                     <tr>
-                      <td>{{ task.task }}</td>
+                      <td class="twidth-lg">{{ task.task }}</td>
                       {% if task.checked %}
-                        <td>
+                        <td class="twidth-md">
                           <center>
                             <a class="green-text" href="{% url 'task-undo' object.id task.id 4 %}">
                               Completed
@@ -167,7 +237,7 @@
                           </center>
                         </td>
                       {% else %}
-                        <td>
+                        <td class="twidth-md">
                           <center>
                             <a class="red-text" href="{% url 'task-complete' object.id task.id 4 %}">
                               Pending
@@ -175,13 +245,35 @@
                           </center>
                         </td>
                       {% endif %}
+                      {% if task.callback %}
+                        <td>
+                          <center>
+                            {% if user.is_superuser %}
+                              <a class="orange-text" href="{% url 'callback-undo' object.id task.id 4 %}">
+                                Call Back!
+                              </a>
+                            {% else %}
+                              <p class="orange-text">
+                                Call Back!
+                              </p>
+                            {% endif %}
+                          </center>
+                        </td>
+                      {% else %}
+                        <td>
+                          <center>
+                            {% if user.is_superuser %}
+                              <a class="green-text" href="{% url 'callback-undo' object.id task.id 4 %}">
+                                Set Callback
+                              </a>
+                            {% endif %}
+                          </center>
+                        </td>
+                      {% endif %}
                     </tr>
                   {% endif %}
                 {% endfor %}
               </table>
-            </div>
-            <div class="col-sm-6">
-              <p><b>Call Backs</b></p>
             </div>
           </div>
         </div>
@@ -191,18 +283,19 @@
         </h6>
         <div class="container ml-4">
           <div class="row">
-            <div class="col-sm-6">
-              <table>
+            <div class="col-sm-8">
+              <table class="table table-bordered table-sm">
                 <tr>
                   <th>Task</th>
                   <th>Status</th>
+                  <th>Callbacks</th>
                 </tr>
                 {% for task in ensuiteCheckList %}
                   {% if task.ensuite == bedroom.ensuite %}
                     <tr>
-                      <td>{{ task.task }}</td>
+                      <td class="twidth-lg">{{ task.task }}</td>
                       {% if task.checked %}
-                        <td>
+                        <td class="twidth-md">
                           <center>
                             <a class="green-text" href="{% url 'task-undo' object.id task.id 5 %}">
                               Completed
@@ -210,7 +303,7 @@
                           </center>
                         </td>
                       {% else %}
-                        <td>
+                        <td class="twidth-md">
                           <center>
                             <a class="red-text" href="{% url 'task-complete' object.id task.id 5 %}">
                               Pending
@@ -218,13 +311,35 @@
                           </center>
                         </td>
                       {% endif %}
+                      {% if task.callback %}
+                        <td>
+                          <center>
+                            {% if user.is_superuser %}
+                              <a class="orange-text" href="{% url 'callback-undo' object.id task.id 5 %}">
+                                Call Back!
+                              </a>
+                            {% else %}
+                              <p class="orange-text">
+                                Call Back!
+                              </p>
+                            {% endif %}
+                          </center>
+                        </td>
+                      {% else %}
+                        <td>
+                          <center>
+                            {% if user.is_superuser %}
+                              <a class="green-text" href="{% url 'callback-undo' object.id task.id 5 %}">
+                                Set Callback
+                              </a>
+                            {% endif %}
+                          </center>
+                        </td>
+                      {% endif %}
                     </tr>
                   {% endif %}
                 {% endfor %}
               </table>
-            </div>
-            <div class="col-sm-6">
-              <p><b>Call Backs</b></p>
             </div>
           </div>
         </div>

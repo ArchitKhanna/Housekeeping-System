@@ -108,6 +108,7 @@ class livingRoomCheckList(models.Model):
     livingroom = models.ForeignKey(livingRoom, on_delete=models.CASCADE)
     task = models.ForeignKey(taskslivingRoom, on_delete=models.DO_NOTHING)
     checked = models.BooleanField(default=False)
+    callback = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         super(livingRoomCheckList, self).save(*args, **kwargs)
@@ -131,6 +132,7 @@ class kitchenCheckList(models.Model):
     kitchen = models.ForeignKey(kitchen, on_delete=models.CASCADE)
     task = models.ForeignKey(tasksKitchen, on_delete=models.DO_NOTHING)
     checked = models.BooleanField(default=False)
+    callback = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         super(kitchenCheckList, self).save(*args, **kwargs)
@@ -154,6 +156,7 @@ class corridorCheckList(models.Model):
     corridor = models.ForeignKey(corridor, on_delete=models.CASCADE)
     task = models.ForeignKey(tasksCorridor, on_delete=models.DO_NOTHING)
     checked = models.BooleanField(default=False)
+    callback = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         super(corridorCheckList, self).save(*args, **kwargs)
@@ -175,6 +178,7 @@ class bedroomCheckList(models.Model):
     bedroom = models.ForeignKey(bedroom, on_delete=models.CASCADE)
     task = models.ForeignKey(tasksBedroom, on_delete=models.DO_NOTHING)
     checked = models.BooleanField(default=False)
+    callback = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         super(bedroomCheckList, self).save(*args, **kwargs)
@@ -199,6 +203,7 @@ class ensuiteCheckList(models.Model):
     ensuite = models.ForeignKey(ensuite, on_delete=models.CASCADE, default=0)
     task = models.ForeignKey(tasksEnsuite, on_delete=models.DO_NOTHING)
     checked = models.BooleanField(default=False)
+    callback = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         super(ensuiteCheckList, self).save(*args, **kwargs)

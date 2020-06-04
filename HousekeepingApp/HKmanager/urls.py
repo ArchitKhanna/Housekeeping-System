@@ -32,4 +32,6 @@ urlpatterns = [
     path('apartment/<int:pk>/delete/', ApartmentDeleteView.as_view(), name='hk-apt-delete'),
     path('completed/<int:pk>/<int:list_id>/<int:key>/', views.complete, name="task-complete"),
     path('undocomplete/<int:pk>/<int:list_id>/<int:key>', views.undocomplete, name="task-undo"),
+    path('setcallback/<int:pk>/<int:list_id>/<int:key>/', views.setcallback, name="callback-set"),
+    path('undocallback/<int:pk>/<int:list_id>/<int:key>', views.undocallback, name="callback-undo"),
 ]
