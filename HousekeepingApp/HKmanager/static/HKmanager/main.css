@@ -2,6 +2,7 @@ body {
   background: #fafafa;
   color: #333333;
   margin-top: 5rem;
+  height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -12,16 +13,37 @@ ul {
   margin: 0;
 }
 
+a {
+  color: black;
+}
+
+a:hover {
+  color: grey;
+  text-decoration: none;
+}
+
 div {
   vertical-align: middle;
 }
 
-.light-grey {
-  background-color: #e0e0e0;
+.task-column-width {
+  width:
 }
 
-.dark-grey {
-  background-color: #ababab;
+.light-green {
+  background-color: #00b140;
+}
+
+.green-text {
+  color: #00b140;
+}
+
+.red-text {
+  color: #e80000;
+}
+
+.dark-green {
+  background-color: #003726;
 }
 
 .white-text {
@@ -33,11 +55,11 @@ div {
 }
 
 .bg-steel {
-  background-color: #c40906;
+  background-color: #003726;
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+  color: #00b140;
 }
 
 .site-header .navbar-nav .nav-link:hover {
@@ -61,6 +83,16 @@ div {
 .article-title {
   color: #444444;
   font-weight: bold;
+}
+
+.footer-link:hover {
+  color: #003726;
+  text-decoration: none;
+}
+
+.my-link:hover {
+  color: #00b140;
+  text-decoration: none;
 }
 
 a.article-title:hover {

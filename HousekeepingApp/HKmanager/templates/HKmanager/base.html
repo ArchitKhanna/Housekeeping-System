@@ -22,13 +22,12 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'hk-Home' %}">House Keeping Manager</a>
+          <a class="navbar-brand mr-4" href="{% url 'hk-Home' %}">Housekeeping Manager</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'hk-Tutorial' %}">Tutorial</a>
               <a class="nav-item nav-link" href="{% url 'hk-ThomondVillage' %}">Thomond Village</a>
             </div>
             <!-- Navbar Right Side -->
@@ -37,10 +36,9 @@
                 <a class="nav-item nav-link" href="{% url 'hk-user-profile' %}">Profile</a>
                 <a class="nav-item nav-link" href="{% url 'hk-user-logout' %}">Logout</a>
                 <a class="nav-item nav-link" href="{% url 'hk-announcement-create' %}">New Announcement</a>
-                {% if user.is_superuser %}
-                  <a class="nav-item nav-link" href="/admin/">Admin</a>
+                <!--{% if user.is_superuser %}
                   <a class="nav-item nav-link" href="{% url 'hk-apt-create' %}">Add Apartment</a>
-                {% endif %}
+                {% endif %}-->
               {% else %}
                 <a class="nav-item nav-link" href="{% url 'hk-user-login' %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'hk-user-register' %}">Register</a>
@@ -62,7 +60,7 @@
         {% endif %}
         {% block content %}{% endblock %}
       </div>
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
         <div class="content-section">
           <h3>Our Sidebar</h3>
           <p class='text-muted'>You can put any information here you'd like.</p>
@@ -73,106 +71,59 @@
               <li class="list-group-item list-group-item-light">Sign Out</li>
             </ul>
         </div>
-      </div>
+      </div> -->
     </div>
   </main>
   <!-- Footer -->
-  <footer class="page-footer font-small light-grey">
+  <footer class="page-footer font-small light-green fixed-bottom position-relative">
     <!-- Footer Links -->
     <div class="container">
       <!-- Grid row-->
-      <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+      <div class="row text-center d-flex justify-content-center pt-4 mb-1s">
         <!-- Grid column -->
         <div class="col-md-2 mb-3">
           <h6 class="text-uppercase font-weight-bold">
-            <a class="black-text" href="#!">About us</a>
+            <a class="white-text footer-link" href="{% url 'hk-About' %}">About</a>
           </h6>
         </div>
         <!-- Grid column -->
         <!-- Grid column -->
         <div class="col-md-2 mb-3">
           <h6 class="text-uppercase font-weight-bold">
-            <a class="black-text" href="#!">Tutorial</a>
+            <a class="white-text footer-link" href="{% url 'hk-Tutorial' %}">Tutorial</a>
           </h6>
         </div>
         <!-- Grid column -->
         <!-- Grid column -->
         <div class="col-md-2 mb-3">
           <h6 class="text-uppercase font-weight-bold">
-            <a class="black-text" href="#!">Admin</a>
+            <a class="white-text footer-link" href="mailto:housekeeper.cls@gmail.com">Contact Us</a>
           </h6>
         </div>
         <!-- Grid column -->
         <!-- Grid column -->
         <div class="col-md-2 mb-3">
           <h6 class="text-uppercase font-weight-bold">
-            <a class="black-text" href="#!">GDPR</a>
+            <a class="white-text footer-link" href="{% url 'hk-GDPR' %}">GDPR</a>
           </h6>
         </div>
         <!-- Grid column -->
         <!-- Grid column -->
+        {% if user.is_superuser %}
         <div class="col-md-2 mb-3">
           <h6 class="text-uppercase font-weight-bold">
-            <a class="black-text" href="#!">Contact</a>
+            <a class="white-text footer-link" href="/admin/">Admin</a>
           </h6>
         </div>
-        <!-- Grid column -->
-      </div>
-      <!-- Grid row-->
-      <hr class="rgba-white-light" style="margin: 0 15%;">
-      <!-- Grid row-->
-      <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
-        <!-- Grid column -->
-        <div class="col-md-8 col-12 mt-5">
-          <p style="line-height: 1.7rem">Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem
-            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-            explicabo.
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</p>
-        </div>
-        <!-- Grid column -->
-      </div>
-      <!-- Grid row-->
-      <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;">
-      <!-- Grid row-->
-      <div class="row pb-3">
-        <!-- Grid column -->
-        <div class="col-md-12">
-          <div class="mb-5 flex-center">
-            <!-- Facebook -->
-            <a class="fb-ic">
-              <i class="fab fa-facebook-f fa-lg white-text mr-4">Facebook</i>
-            </a>
-            <!-- Twitter -->
-            <a class="tw-ic">
-              <i class="fab fa-twitter fa-lg white-text mr-4">Twitter</i>
-            </a>
-            <!-- Google +-->
-            <a class="gplus-ic">
-              <i class="fab fa-google-plus-g fa-lg white-text mr-4">Gmail</i>
-            </a>
-            <!--Linkedin -->
-            <a class="li-ic">
-              <i class="fab fa-linkedin-in fa-lg white-text mr-4">CLS</i>
-            </a>
-            <!--Instagram-->
-            <a class="ins-ic">
-              <i class="fab fa-instagram fa-lg white-text mr-4">Instagram</i>
-            </a>
-            <!--Pinterest-->
-            <a class="pin-ic">
-              <i class="fab fa-pinterest fa-lg white-text"> </i>
-            </a>
-          </div>
-        </div>
+        {% endif %}
         <!-- Grid column -->
       </div>
       <!-- Grid row-->
     </div>
     <!-- Footer Links -->
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3 dark-grey">© 2020 Copyright:
-      <a href="#" class="white-text">Archit Khanna</a>
+    <div class="footer-copyright text-center py-3 dark-green white-text">© 2020 Copyright:
+      <a href="#" class="white-text my-link">Archit Khanna</a>
     </div>
     <!-- Copyright -->
   </footer>

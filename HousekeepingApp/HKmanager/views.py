@@ -47,6 +47,22 @@ def home(request):
     return render(request, 'HKmanager/home.html', context)
 
 @login_required
+def gdpr(request):
+    context = {
+        'title': 'Housekeeper - GDPR',
+    }
+
+    return render(request, 'HKmanager/gdpr.html', context)
+
+@login_required
+def about(request):
+    context = {
+        'title': 'Housekeeper - About Us',
+    }
+
+    return render(request, 'HKmanager/about.html', context)
+
+@login_required
 def tutorial(request):
     context = {
         'title': 'Housekeeper - Tutorial'
