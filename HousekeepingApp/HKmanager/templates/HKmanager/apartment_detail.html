@@ -11,13 +11,6 @@
       <div id="task {{object.number}}" class="col-sm-3 text-white">
         <p class="article-content text-center pt-3 pb-3">{{ object.task }}</p>
       </div>
-      <script>
-        var num = "{{object.number}}"
-        var status = "{{object.status}}";
-        var task = "{{object.task}}";
-        setStatusClass(status, num);
-        setTaskClass(task, num);
-      </script>
       <p class="article-content">Assigned To: {{ object.assignee.first_name }} {{ object.assignee.last_name }}</p>
       {% if object.assignee == user or user.is_superuser %}
         <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'hk-apt-update' object.id %}">Update Apartment</a>
@@ -347,4 +340,11 @@
       {% endfor %}
     </div>
   </article>
+  <script>
+    var num = "{{object.number}}"
+    var status = "{{object.status}}";
+    var task = "{{object.task}}";
+    setStatusClass(status, num);
+    setTaskClass(task, num);
+  </script>
 {% endblock content %}

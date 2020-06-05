@@ -17,7 +17,7 @@ from . import views
 #On adding a new url, ensure views.name is correct, url is correct and name is changed.
 
 urlpatterns = [
-    path('home/', AnnouncementListView.as_view(), name='hk-Home'),
+    path('', AnnouncementListView.as_view(), name='hk-Home'),
     path('announcement/<int:pk>/', AnnouncementDetailView.as_view(), name='hk-announcement'),
     path('announcement/new/', AnnouncementCreateView.as_view(), name='hk-announcement-create'),
     path('announcement/<int:pk>/update/', AnnouncementUpdateView.as_view(), name='hk-announcement-update'),
