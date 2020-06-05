@@ -64,11 +64,13 @@ class apartment(models.Model):
         return str(self.number)
 
     def save(self, *args, **kwargs):
-            apt = apartment.objects.get(pk=self.pk)
-            sender = apt.assignee
+
             if apartment.objects.filter(pk=self.pk).exists():
 
-                temp = get_template('email.html')
+                apt = apartment.objects.get(pk=self.pk)
+                sender = apt.assignee
+
+                temp = get_template('email1.html')
 
                 details = {
                             'sender': sender,
@@ -86,6 +88,26 @@ class apartment(models.Model):
                             fail_silently=False,
                             html_message=html_content,
                          )
+            else:
+
+                temp = get_template('email2.html')
+
+                details = {
+                            'to': self.assignee.first_name,
+                            'apartment': self,
+                          }
+
+                html_content = temp.render(details)
+
+                send_mail(
+                            'Apartment Assignment Notification',
+                            html_content,
+                            'housekeeper.cls@gmail.com',
+                            [self.assignee.email],
+                            fail_silently=False,
+                            html_message=html_content,
+                         )
+
             super(apartment, self).save(*args, **kwargs)
 
 

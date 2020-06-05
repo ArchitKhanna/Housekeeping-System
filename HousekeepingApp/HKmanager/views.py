@@ -40,7 +40,7 @@ from .models import (
 @login_required
 def home(request):
     context = {
-        'title': 'Housekeeper - Home',
+        'title': 'Home',
         'posts': Announcement.objects.all()
     }
 
@@ -49,7 +49,7 @@ def home(request):
 @login_required
 def gdpr(request):
     context = {
-        'title': 'Housekeeper - GDPR',
+        'title': 'GDPR',
     }
 
     return render(request, 'HKmanager/gdpr.html', context)
@@ -57,7 +57,7 @@ def gdpr(request):
 @login_required
 def about(request):
     context = {
-        'title': 'Housekeeper - About Us',
+        'title': 'About Us',
     }
 
     return render(request, 'HKmanager/about.html', context)
@@ -65,7 +65,7 @@ def about(request):
 @login_required
 def tutorial(request):
     context = {
-        'title': 'Housekeeper - Tutorial'
+        'title': 'Tutorial'
     }
     return render(request, 'HKmanager/tutorial.html', context)
 

@@ -7,11 +7,10 @@ Status = status.objects.all()
 Tasks = task.objects.all()
 
 #This is where all custom functions go
-def getBlocks(id){
+def getBlocks(id):
 
     for x in Blocks:
         if Blocks.id == id:
             return Blocks.name
-        else
+        else:
             return 'Error'
-}
