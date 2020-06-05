@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-#password - gxqvctdwjtuujnsr
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -50,6 +49,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'phonenumber_field',
     'crispy_forms',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -152,4 +152,11 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = os.environ.get('HK_EMAIL_USER')
 SERVER_EMAIL = os.environ.get('HK_EMAIL_USER')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
