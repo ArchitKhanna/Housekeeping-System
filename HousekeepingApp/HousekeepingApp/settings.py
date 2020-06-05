@@ -22,11 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #SECRET_KEY = '!t9mck795he&2_v89yv=wi$215c_0qaxv)_cz3w6xtg=-7z8tl'
 SECRET_KEY = os.environ.get('HK_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('HK_DEBUG')
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 SESSION_COOKIE_SECURE = True
 
 CSRF_COOKIE_SECURE = True
+
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 #SECURE_SSL_REDIRECT = True
 
