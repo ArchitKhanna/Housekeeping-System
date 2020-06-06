@@ -130,7 +130,7 @@
                     <td>
                       <center>
                         {% if user.is_superuser %}
-                          <a class="green-text" href="{% url 'callback-undo' object.id task.id 2 %}">
+                          <a class="green-text" href="{% url 'callback-set' object.id task.id 2 %}">
                             Set Callback
                           </a>
                         {% endif %}
@@ -192,7 +192,7 @@
                     <td>
                       <center>
                         {% if user.is_superuser %}
-                          <a class="green-text" href="{% url 'callback-undo' object.id task.id 3 %}">
+                          <a class="green-text" href="{% url 'callback-set' object.id task.id 3 %}">
                             Set Callback
                           </a>
                         {% endif %}
@@ -257,7 +257,7 @@
                         <td>
                           <center>
                             {% if user.is_superuser %}
-                              <a class="green-text" href="{% url 'callback-undo' object.id task.id 4 %}">
+                              <a class="green-text" href="{% url 'callback-set' object.id task.id 4 %}">
                                 Set Callback
                               </a>
                             {% endif %}
@@ -323,7 +323,7 @@
                         <td>
                           <center>
                             {% if user.is_superuser %}
-                              <a class="green-text" href="{% url 'callback-undo' object.id task.id 5 %}">
+                              <a class="green-text" href="{% url 'callback-set' object.id task.id 5 %}">
                                 Set Callback
                               </a>
                             {% endif %}
