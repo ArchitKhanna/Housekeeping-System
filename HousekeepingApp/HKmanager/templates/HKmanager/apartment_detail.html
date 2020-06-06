@@ -49,7 +49,8 @@
                       </center>
                     </td>
                   {% endif %}
-                  {% if task.callback %}
+
+                  {% if task.callback == True %}
                     <td>
                       <center>
                         {% if user.is_superuser %}
@@ -67,7 +68,7 @@
                     <td>
                       <center>
                         {% if user.is_superuser %}
-                          <a class="green-text" href="{% url 'callback-undo' object.id task.id 1 %}">
+                          <a class="green-text" href="{% url 'callback-set' object.id task.id 1 %}">
                             Set Callback
                           </a>
                         {% endif %}

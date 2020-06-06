@@ -75,7 +75,7 @@ def thomondvillage(request):
         'apartment': apartment.objects.all(),
         'title': 'Thomond Village Panel'
     }
-    return render(request, 'HKmanager/thomondvillage.html', context)
+    return render(request, 'HKmanager/villagepanel.html', context)
 
 @login_required
 def setcallback(request, pk, list_id, key):
@@ -165,7 +165,7 @@ def undocomplete(request, pk, list_id, key):
     task.save()
     return redirect('/apartment/'+str(pk)+'/')
 
-#CLAS BASED VIEWS
+#CLASS BASED VIEWS
 
 class AnnouncementListView(LoginRequiredMixin, ListView):
     model = Announcement
@@ -212,7 +212,7 @@ class AnnouncementDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView
 
 class ApartmentListView(LoginRequiredMixin, ListView):
     model = apartment
-    template_name = 'HKmanager/ThomondVillage.html'
+    template_name = 'HKmanager/villagepanel.html'
     context_object_name = 'apartment'
     paginate_by = 10
 

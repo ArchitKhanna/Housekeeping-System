@@ -41,7 +41,7 @@ def profile(request):
             return redirect('hk-user-profile')
     else:
         user_form = UserUpdateForm(instance=request.user)
-        profile_form = ProfileUpdateForm(instance=request.user.profile)
+        profile_form = ProfileUpdateForm()
 
     context = {
         'title': 'Housekeeper - Profile',
