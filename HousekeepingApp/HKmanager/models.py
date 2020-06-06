@@ -58,7 +58,7 @@ class apartment(models.Model):
     assignee = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
     def get_absolute_url(self):
-        return reverse('hk-ThomondVillage')
+        return reverse('hk-villagepanel')
 
     def __str__(self):
         return str(self.number)

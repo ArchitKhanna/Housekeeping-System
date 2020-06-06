@@ -201,7 +201,7 @@ class AnnouncementUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView
 
 class AnnouncementDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Announcement
-    success_url = '/home/'
+    success_url = '/'
 
     def test_func(self):
         announcement = self.get_object()
@@ -277,4 +277,4 @@ class ApartmentUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
 
 class ApartmentDeleteView(LoginRequiredMixin, DeleteView):
     model = apartment
-    success_url = '/thomondvillage/'
+    success_url = '/villagepanel/'
