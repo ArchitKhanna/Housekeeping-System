@@ -28,7 +28,7 @@ CSRF_COOKIE_SECURE = True
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-#SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = [
                     'hkmanagementapp.herokuapp.com',
