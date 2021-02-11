@@ -1,0 +1,11 @@
+{% extends "HKmanager/errorbase.html" %}
+{% block content %}
+  <h1 class="aligner-center pt-5 green-text">Where do you think you are going? >:(</h1>
+  <h1 class="aligner-center pt-5 green-text">Error 403 - Access Denied</h1>
+  <h2 class="aligner-center pt-5 green-text">You ain't cool enough to get in here.</h2>
+  <form action="{% url 'hk-Home' %}">
+    <div class="aligner-center pt-5">
+      <button class="btn btn-outline-success aligner-middle green-text" type="submit" name="submit-button">Go Home</button>
+    </div>
+  </form>
+{% endblock content %}

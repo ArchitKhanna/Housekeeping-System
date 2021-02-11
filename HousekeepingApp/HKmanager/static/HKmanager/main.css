@@ -151,6 +151,10 @@ a.article-title:hover {
   text-align: center;
 }
 
+.aligner-middle {
+  align: center;
+}
+
 .aligner-right {
   text-align: right;
 }

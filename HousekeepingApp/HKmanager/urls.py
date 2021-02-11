@@ -35,3 +35,8 @@ urlpatterns = [
     path('setcallback/<int:pk>/<int:list_id>/<int:key>/', views.setcallback, name="callback-set"),
     path('undocallback/<int:pk>/<int:list_id>/<int:key>', views.undocallback, name="callback-undo"),
 ]
+
+handler400 = 'HKmanager.views.custom400'
+handler403 = 'HKmanager.views.custom403'
+handler404 = 'HKmanager.views.custom404'
+handler500 = 'HKmanager.views.custom500'

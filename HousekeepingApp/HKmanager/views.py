@@ -55,6 +55,23 @@ def gdpr(request):
     return render(request, 'HKmanager/gdpr.html', context)
 
 @login_required
+def custom400(request, exception=400):
+    return render(request, 'HKmanager/400.html')
+
+@login_required
+def custom403(request, exception=403):
+    return render(request, 'HKmanager/403.html')
+
+@login_required
+def custom404(request, exception=404):
+    return render(request, 'HKmanager/404.html')
+
+@login_required
+def custom500(request, exception=500):
+    return render(request, 'HKmanager/500.html')
+
+
+@login_required
 def about(request):
     context = {
         'title': 'About Us',
