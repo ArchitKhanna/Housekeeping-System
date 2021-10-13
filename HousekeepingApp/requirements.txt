@@ -44,7 +44,7 @@ lxml==4.4.1
 pandas==1.0.3
 parsel==1.5.2
 phonenumberslite==8.12.3
-Pillow==6.2.1
+Pillow==8.3.2
 Protego==0.1.15
 psycopg2==2.8.5
 py-vapid==1.7.0
