@@ -34,7 +34,7 @@ http-ece==1.1.0
 hyper==0.7.0
 hyperframe==3.2.0
 hyperlink==19.0.0
-idna==2.8
+idna==3.7
 incremental==17.5.0
 jmespath==0.10.0
 joblib==1.2.0
